@@ -69,3 +69,11 @@ export function getFuLiao (data) {
     data
   })
 }
+
+// 长连接数据推送
+export function sseBfConnect (data) {
+  return httpRequest({
+    url: `/ss/sse/connect/${data}`,
+    method: 'get'
+  })
+}

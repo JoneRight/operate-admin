@@ -36,6 +36,12 @@ const globalRoutes = [
     component: _import('common/login'),
     name: 'login',
     meta: {title: '登录'}
+  },
+  {
+    path: '/bigScreen',
+    component: _import('common/bigScreen'),
+    name: 'bigScreen',
+    meta: {title: '大屏显示'}
   }
 ]
 
