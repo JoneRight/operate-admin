@@ -1,0 +1,19 @@
+// 站点主色
+// tips: 要达到整站主题修改效果, 请确保[$--color-primary]站点主色与[/src/element-ui-theme/index.js]文件中[import './element-[#00b99e]/index.css']当前主题色一致
+$--color-primary: #00b99e;
+
+// Navbar
+$navbar--background-color: $--color-primary;
+
+// Sidebar
+$sidebar--background-color-dark: #263238;
+$sidebar--background-color-avtive-dark: #3399FF;
+$sidebar--background-color-un-active-dark: yellow;
+$sidebar--background-color-avtive-hover: rgba(255,255,255,0.2);
+$sidebar--background-color-dark-main: radial-gradient(circle at 7% 3%, #00cc99 0%, #0060b9 100%, #00b99e 100%);
+$sidebar--background-color-dark-menu: blue;
+$sidebar--background-color-dark-text: #000;
+$sidebar--color-text-dark: #fff;
+
+// Content
+$content--background-color: #f1f4f5;

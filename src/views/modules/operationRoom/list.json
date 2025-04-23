@@ -1,0 +1,140 @@
+{
+  "column": [
+    {
+      "headerName": "考试名称",
+      "field": "recordsName",
+      "filter": "recordsName",
+      "tooltipField": "recordsName",
+      "minWidth": 210,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "考试时间",
+      "field": "examStartDate",
+      "filter": "examStartDate",
+      "cellRenderer": "examDataSolt",
+      "minWidth": 240,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "考试类型",
+      "field": "type",
+      "filter": "type",
+      "tooltipField": "type",
+      "minWidth": 120,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "使用考站数",
+      "field": "totalStationNumber",
+      "filter": "totalStationNumber",
+      "tooltipField": "totalStationNumber",
+      "minWidth": 120,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "使用考题数",
+      "field": "totalExamNumber",
+      "filter": "totalExamNumber",
+      "tooltipField": "totalExamNumber",
+      "minWidth": 120,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "考官数",
+      "field": "totalTeacherNumber",
+      "filter": "totalTeacherNumber",
+      "tooltipField": "totalTeacherNumber",
+      "minWidth": 90,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "考生数",
+      "field": "totalStudentNumber",
+      "filter": "totalStudentNumber",
+      "tooltipField": "totalStudentNumber",
+      "minWidth": 90,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "创建时间",
+      "field": "creatDate",
+      "filter": "creatDate",
+      "tooltipField": "creatDate",
+      "minWidth": 170,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "choosedFlag": true,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+@import "normalize";
+// api: https://github.com/necolas/normalize.css/
+@import "variables";
+// 站点变量
+@import "base";
+
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-start{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-end{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.el-table thead .el-table__cell{
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #333;
+  height: 40px;
+  line-height: 40px;
+}
+.el-table{
+  height: 100%;
+  overflow: auto;
+}
+.el-table--small .el-table__cell{
+  font-size: 14px;
+  padding: 6px 0 !important;
+}
+
+// 内部元素
+.ag-root-wrapper{
+  border-radius: 4px;
+}
+.ag-theme-alpine {
+  --ag-border-color: #ebeef5 !important;
+  --ag-selected-row-background-color: rgb(0, 160, 233, 0.2) !important;
+  --ag-odd-row-background-color: #f5f5f5 !important;
+}
+.inner-content{
+  background: #f5f5f5;
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  min-height: inherit;
+  box-sizing: border-box;
+}
+.inner-content-box{
+  display: flex;
+  flex: 1;
+  background: #fff;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.searchBox .el-form-item{
+  margin-bottom: 2px;
+}
+.detailsBox{
+  flex: 1;
+  width: 100%;
+  display: grid;
+}
+.pageBox{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #606266;
+  font-size: 14px;
+}
+.iconfont {
+  font-size: 12px !important;
+}
+.ag-pinned-right-cols-container{
+  margin-right: 0 !important;
+}
+.ag-cell-value .el-button{
+  margin-left: 0 !important;
+}

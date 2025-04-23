@@ -1,0 +1,48 @@
+#night_shift_d{
+  opacity: 0.05 !important;
+}
+.new-inner{
+  height: calc(100vh - 115px);
+  overflow: hidden;
+  position: relative;
+  .inner-content-box{
+    height: calc(100vh - 115px);
+    position: absolute;
+  }
+  .topShow{
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: left 0.5s , opacity 0.5s;
+  }
+  .topHiden{
+    left: 100%;
+    top: 0;
+    opacity: 0;
+    transition: left 0.5s , opacity 0.5s;
+  }
+  .bottomShow{
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: left 0.5s , opacity 0.5s;
+  }
+  .bottomHiden{
+    left: -100%;
+    top: 0;
+    opacity: 0;
+    transition: left 0.5s , opacity 0.5s;
+  }
+ }
+.el-range-editor--medium .el-range-separator{
+  z-index: 1000 !important;
+}
+
+.el-menu--collapse .el-menu-item span{
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  display: inline-block !important;
+}
+

@@ -1,0 +1,676 @@
+{
+  "typeList":[
+    {
+      "label": "首次随访",
+      "value": "1"
+    },
+    {
+      "label": "脱落随访",
+      "value": "2"
+    },
+    {
+      "label": "常规随访",
+      "value": "3"
+    }
+  ],
+  "patientType":[
+    {
+      "label": "用药患者",
+      "value": "1"
+    },
+    {
+      "label": "脱落患者",
+      "value": "2"
+    },
+    {
+      "label": "复购患者",
+      "value": "3"
+    },
+    {
+      "label": "失访患者",
+      "value": "4"
+    }
+  ],
+  "statusList":[
+    {
+      "label": "待随访",
+      "value": "0"
+    },
+    {
+      "label": "随访完成",
+      "value": "1"
+    },
+    {
+      "label": "失访",
+      "value": "2"
+    }
+  ],
+  "visitList":[
+    {
+      "label": "人工",
+      "value": "1"
+    },
+    {
+      "label": "AI电话",
+      "value": "2"
+    }
+  ],
+  "drugList":[
+    {
+      "label":"瑞百安",
+      "value": "123"
+    }
+  ],
+  "useList":[
+    {
+      "label":"在使用",
+      "value": "1"
+    },
+    {
+      "label":"不使用",
+      "value": "0"
+    }
+  ],
+  "genderList":[
+    {
+      "label":"未知",
+      "value": "0"
+    },
+    {
+      "label":"男",
+      "value": "1"
+    },
+    {
+      "label":"女",
+      "value": "2"
+    }
+  ],
+  "afterOperation": [
+    {
+      "label": "病房",
+      "value": "ward"
+    },
+    {
+      "label": "PACU",
+      "value": "PACU"
+    },
+    {
+      "label": "ICU",
+      "value": "ICU"
+    },
+    {
+      "label": "AICU",
+      "value": "AICU"
+    }
+  ],
+  "operationPosition": [
+    {
+      "label": "头",
+      "value": "head"
+    },
+    {
+      "label": "躯干",
+      "value": "trunk"
+    },
+    {
+      "label": "四肢",
+      "value": "limb"
+    }
+  ],
+  "toExamine": [
+    {
+      "label": "已审核",
+      "value": "audited"
+    },
+    {
+      "label": "未审核",
+      "value": "unaudited"
+    }
+  ],
+  "toSend": [
+    {
+      "label": "送达",
+      "value": "send"
+    },
+    {
+      "label": "未送",
+      "value": "unSend"
+    }
+  ],
+  "haveFlag": [
+    {
+      "label": "有",
+      "value": "true"
+    },
+    {
+      "label": "无",
+      "value": "false"
+    }
+  ],
+  "haveOptions": [
+    {
+      "label": "有",
+      "value": "1"
+    },
+    {
+      "label": "无",
+      "value": "0"
+    }
+  ],
+  "bfBuWeiOptions": [
+    {
+      "label": "左侧",
+      "value": "bfZuo"
+    },
+    {
+      "label": "右侧",
+      "value": "bfYou"
+    },
+    {
+      "label": "双侧",
+      "value": "bfShuang"
+    },
+    {
+      "label": "其他",
+      "value": "bfQt"
+    }
+  ],
+  "xhBuWeiOptions": [
+    {
+      "label": "左侧",
+      "value": "xhZuo"
+    },
+    {
+      "label": "右侧",
+      "value": "xuYou"
+    },
+    {
+      "label": "双侧",
+      "value": "xhShuang"
+    },
+    {
+      "label": "其他",
+      "value": "xhQt"
+    }
+  ],
+
+  "tongLuOptions": [
+    {
+      "label": "中心静脉通路",
+      "value": "jingMai"
+    },
+    {
+      "label": "动脉通路",
+      "value": "dongMai"
+    },
+    {
+      "label": "气管插管",
+      "value": "qiGuan"
+    },
+    {
+      "label": "伤口引流",
+      "value": "shangKou"
+    },
+    {
+      "label": "胃管",
+      "value": "weiGuan"
+    },
+    {
+      "label": "尿管",
+      "value": "niaoGuan"
+    },
+    {
+      "label": "其他",
+      "value": "guanLuQt"
+    }
+  ],
+  "quXiangOptions": [
+    {
+      "label": "PACU",
+      "value": "PACU"
+    },
+    {
+      "label": "病房",
+      "value": "bingFang"
+    },
+    {
+      "label": "ICU病房",
+      "value": "icu"
+    },
+    {
+      "label": "急诊",
+      "value": "jizZhen"
+    },
+    {
+      "label": "离院",
+      "value": "liYuan"
+    },
+    {
+      "label": "AICU",
+      "value": "aicu"
+    }
+  ],
+  "operationDocChenShuOptions": [
+    {
+      "label": "预计手术时间",
+      "value": "preOperation"
+    },
+    {
+      "label": "预计失血量",
+      "value": "preShiXue"
+    },
+    {
+      "label": "手术关注点",
+      "value": "opGuanZhu"
+    },
+    {
+      "label": "其他",
+      "value": "opQt"
+    }
+  ],
+  "anesthesiaDocChenShuOptions": [
+    {
+      "label": "麻醉关注点",
+      "value": "anesGuanZhu"
+    },
+    {
+      "label": "其他",
+      "value": "anesQt"
+    }
+  ],
+  "ShuOptionsOptions": [
+    {
+      "label": "物品灭菌合格",
+      "value": "nurseMieJun"
+    },
+    {
+      "label": "仪器设备",
+      "value": "nurseSheBei"
+    },
+    {
+      "label": "术前术中特殊用药情况",
+      "value": "nurseDaiYao"
+    },
+    {
+      "label": "其他",
+      "value": "nurseQt"
+    }
+  ],
+  "operateBackOptions": [
+    {
+      "label": "病房",
+      "value": "1"
+    },
+    {
+      "label": "PACU",
+      "value": "2"
+    },
+    {
+      "label": "ICU",
+      "value": "3"
+    },
+    {
+      "label": "AICU",
+      "value": "4"
+    }
+  ],
+  "bodyPositionOptions": [
+    {
+      "label": "平卧",
+      "value": "1"
+    },
+    {
+      "label": "侧卧",
+      "value": "2"
+    },
+    {
+      "label": "俯卧",
+      "value": "3"
+    },
+    {
+      "label": "甲状腺体位",
+      "value": "4"
+    },
+    {
+      "label": "截石位",
+      "value": "5"
+    }
+  ],
+  "operateExamOptions": [
+    {
+      "label": "审核",
+      "value": "1"
+    },
+    {
+      "label": "未审核",
+      "value": "5"
+    }
+  ],
+  "emergencyList": [
+    {
+      "label": "择期",
+      "value": "0"
+    },
+    {
+      "label": "急诊",
+      "value": "1"
+    },
+    {
+      "label": "日间",
+      "value": "2"
+    }
+  ],
+  "thrombusRiskResultList": [
+    {
+      "label": "5分",
+      "value": "1"
+    },
+    {
+      "label": ">=5分",
+      "value": "2"
+    }
+  ],
+  "stateOptions": [
+    {
+      "label": "0",
+      "value": "手术安排"
+    },
+    {
+      "label": "1",
+      "value": "离开病房(手术室呼叫后病房确认)"
+    },
+    {
+      "label": "2",
+      "value": "入手术室(接患者手术室护士签名后)"
+    },
+    {
+      "label": "100",
+      "value": "结束"
+    }
+  ],
+  "operateTypeOptions": [
+    {
+      "label": "择期",
+      "value": "0"
+    },
+    {
+      "label": "急诊",
+      "value": "1"
+    },
+    {
+      "label": "日间",
+      "value": "2"
+    }
+  ],
+  "shuQianOptions": {
+    "allList": ["sqMzOne","sqMzTwo","sqMzThree","sqMzFour","sqBodyOne","sqBodyTwo","sqBodyThree","sqBodyFour","sqPfOne","sqPfTwo","sqPfThree","sqPfFour","sqZtOne","sqZtTwo","sqZtThree","sqZtFour","sqTimeOne","sqTimeTwo","sqTimeThree","sqTimeFour"],
+    "options1": [
+      {
+        "label": "I级:体格健康、发育营养良好，各器官功能正常",
+        "value": "sqMzOne",
+        "point": "1"
+      },
+      {
+        "label": "II级：除外科疾病外，有轻度并存病，功能代偿健全",
+        "value": "sqMzTwo",
+        "point": "2"
+      },
+      {
+        "label": "III级：有严重并存病，体力活动受限，尚能应付日常活动",
+        "value": "sqMzThree",
+        "point": "3"
+      },
+      {
+        "label": "IV级及以上：合并严重系统疾病，丧失日常活动能力，威胁生命甚至死亡",
+        "value": "sqMzFour",
+        "point": "4"
+      }
+    ],
+    "options2": [
+      {
+        "label": "标准:18.5~23.9",
+        "value": "sqBodyOne",
+        "point": "1"
+      },
+      {
+        "label": "偏胖：24.0～27.9",
+        "value": "sqBodyTwo",
+        "point": "2"
+      },
+      {
+        "label": "肥胖：>=28",
+        "value": "sqBodyThree",
+        "point": "3"
+      },
+      {
+        "label": "偏瘦：<18.5",
+        "value": "sqBodyFour",
+        "point": "4"
+      }
+    ],
+    "options3": [
+      {
+        "label": "皮肤完好",
+        "value": "sqPfOne",
+        "point": "1"
+      },
+      {
+        "label": "皮肤有红斑、潮湿",
+        "value": "sqPfTwo",
+        "point": "2"
+      },
+      {
+        "label": "皮肤有瘀斑，水疱",
+        "value": "sqPfThree",
+        "point": "3"
+      },
+      {
+        "label": "重度水肿，皮肤发亮，按压很难回弹",
+        "value": "sqPfFour",
+        "point": "4"
+      }
+    ],
+    "options4": [
+      {
+        "label": "不受限：患者活动自如",
+        "value": "sqZtOne",
+        "point": "1"
+      },
+      {
+        "label": "轻度受限；能经常独立地改变躯体或四肢的位置，但变动幅度不大",
+        "value": "sqZtTwo",
+        "point": "2"
+      },
+      {
+        "label": "部分受限；偶尔能轻微地移动躯体或四肢，但不能独立完成经常的或显著的躯体运动",
+        "value": "sqZtThree",
+        "point": "3"
+      },
+      {
+        "label": "完全受限：没有帮助的情况下不能完成轻微的躯体或四肢的位置变动",
+        "value": "sqZtFour",
+        "point": "4"
+      }
+    ],
+    "options5": [
+      {
+        "label": "<3",
+        "value": "sqTimeOne",
+        "point": "1"
+      },
+      {
+        "label": ">=3且>3.5",
+        "value": "sqTimeTwo",
+        "point": "2"
+      },
+      {
+        "label": ">=3.5且<4",
+        "value": "sqTimeThree",
+        "point": "3"
+      },
+      {
+        "label": ">=4",
+        "value": "sqTimeFour",
+        "point": "4"
+      }
+    ],
+    "options6": [
+      {
+        "label": "糖尿病",
+        "value": "sqJb",
+        "point": "4"
+      }
+    ],
+    "options7": [
+      {
+        "label": "纳入压力性损伤危险患者",
+        "value": "sqSunShang",
+        "point": "9"
+      }
+    ]
+  },
+  "shuZhongOptions": {
+    "options1": [
+      {
+        "label": "浅部组织暴露：手术切开解剖位置涉及皮肤、皮下组织和筋膜",
+        "value": "szTwOne",
+        "point": "1"
+      },
+      {
+        "label": "深部组织暴露：手术切开解剖位置涉及肌肉、关节、骨组织",
+        "value": "szTwTwo",
+        "point": "2"
+      },
+      {
+        "label": "体腔/器官暴露：手术切开解剖位置涉及胸腔、腹腔和盆腔，有重要组织器官暴露在外",
+        "value": "szTwThree",
+        "point": "3"
+      },
+      {
+        "label": "低体温/降温治疗：术中或术毕核心体温＜36度，或因手术治疗需要，术中使用降温措施",
+        "value": "szTwFour",
+        "point": "4"
+      }
+    ],
+    "options2": [
+      {
+        "label": "<200",
+        "value": "szCxOne",
+        "point": "1"
+      },
+      {
+        "label": ">=200且<400",
+        "value": "szCxTwo",
+        "point": "2"
+      },
+      {
+        "label": "400~800",
+        "value": "szCxThree",
+        "point": "3"
+      },
+      {
+        "label": ">800",
+        "value": "szCxFour",
+        "point": "4"
+      }
+    ],
+    "options3": [
+      {
+        "label": "轻度增加：体位调节0° ~＜ 10°",
+        "value": "szYlOne",
+        "point": "1"
+      },
+      {
+        "label": "中度增加：体位调节10° ~＜ 30°",
+        "value": "szYlTwo",
+        "point": "2"
+      },
+      {
+        "label": "重度增加：体位调节30° ~＜= 60°",
+        "value": "szYlThree",
+        "point": "3"
+      },
+      {
+        "label": "极度增加：体位调节> 60°",
+        "value": "szYlFour",
+        "point": "4"
+      }
+    ],
+    "options4": [
+      {
+        "label": "＜ 3",
+        "value": "szTimeOne",
+        "point": "1"
+      },
+      {
+        "label": ">=3且<3.5",
+        "value": "szTimeTwo",
+        "point": "2"
+      },
+      {
+        "label": ">=3.4且<4",
+        "value": "szTimeThree",
+        "point": "3"
+      },
+      {
+        "label": ">=4",
+        "value": "szTimeFour",
+        "point": "4"
+      }
+    ]
+  },
+  "shuHouOptions": {
+    "options1": [
+      {
+        "label": "1期",
+        "value": "shSzSzOne"
+      },
+      {
+        "label": "2期",
+        "value": "shSzSzTwo"
+      },
+      {
+        "label": "3期",
+        "value": "shSzSzThree"
+      },
+      {
+        "label": "4期",
+        "value": "shSzSzFour"
+      },
+      {
+        "label": "深部组织损伤",
+        "value": "shSzSzZuZhi"
+      },
+      {
+        "label": "不可分期",
+        "value": "shSzSzBkfq"
+      }
+    ],
+    "options2": [
+      {
+        "label": "1期",
+        "value": "shSzQxOne"
+      },
+      {
+        "label": "2期",
+        "value": "shSzQxTwo"
+      },
+      {
+        "label": "3期",
+        "value": "shSzQxThree"
+      },
+      {
+        "label": "4期",
+        "value": "shSzQxFour"
+      },
+      {
+        "label": "深部组织损伤",
+        "value": "shSzQxZuZhi"
+      },
+      {
+        "label": "不可分期",
+        "value": "shSzQxBkfq"
+      }
+    ]
+  }
+}

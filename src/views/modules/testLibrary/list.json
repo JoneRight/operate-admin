@@ -1,0 +1,51 @@
+{
+  "column": [
+    {
+      "headerName": "考题库名称",
+      "field": "examPool",
+      "filter": "examPool",
+      "tooltipField": "examPool",
+      "minWidth": 160,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "考题数量",
+      "field": "examCount",
+      "filter": "examCount",
+      "tooltipField": "examCount",
+      "minWidth": 120,
+      "flex": 1,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    },
+    {
+      "headerName": "创建时间",
+      "field": "creatDate",
+      "filter": "creatDate",
+      "tooltipField": "creatDate",
+      "minWidth": 180,
+      "id": 103,
+      "sortable": true,
+      "resizable": true,
+      "hide": false,
+      "editable": false,
+      "tooltipComponentParams": {
+        "color": "#55AA77"
+      }
+    }
+  ]
+}

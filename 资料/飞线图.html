@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>飞线图</title>
+    <script src="./map.js"></script>
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color:#2F4056;
+        }
+    </style>
+</head>
+<body>    
+<div id="chart-box" style="width:100%; height:100%;"></div>
+    <script type="text/javascript">
+        const chart = echarts.init(document.getElementById('chart-box'));
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('get','https://geo.datav.aliyun.com/areas/bound/530000_full.json',true)
+        xhr.send(null)
+        xhr.onreadystatechange = () => {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+                const data = JSON.parse(xhr.responseText);
+
+            } else {
+                alert(xhr.status);
+            }
+        }
+    </script>
+</body>
