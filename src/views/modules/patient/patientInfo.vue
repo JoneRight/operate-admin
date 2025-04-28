@@ -145,6 +145,7 @@ export default{
   overflow: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
   .chartsBoxInner{
     flex: 1;
     overflow: auto;

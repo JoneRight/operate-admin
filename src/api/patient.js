@@ -1,6 +1,18 @@
 // import Vue from 'vue'
 import httpRequest from '@/utils/httpRequest'
 
+// 获取签名
+export function getSignProd (data) {
+  return httpRequest({
+    url: `/his/getSign`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data
+  })
+}
+
 // 获取排台
 export function fetchList (query) {
   return httpRequest({
@@ -14,6 +26,18 @@ export function fetchList (query) {
 export function getDetail (data) {
   return httpRequest({
     url: `/ss/patientoperate/getDetail`,
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data
+  })
+}
+
+// 获取患者手术交接表
+export function patientoperateSaveOrUpdate (data) {
+  return httpRequest({
+    url: `/ss/patientoperate/saveOrUpdate`,
     method: 'post',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
