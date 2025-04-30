@@ -39,9 +39,9 @@ export function patientoperateSaveOrUpdate (data) {
   return httpRequest({
     url: `/ss/patientoperate/saveOrUpdate`,
     method: 'post',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded'
+    // },
     data
   })
 }

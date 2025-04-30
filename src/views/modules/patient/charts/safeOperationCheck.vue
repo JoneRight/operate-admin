@@ -464,9 +464,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>手术医生签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.anesthesiaEntity.operationDoctorImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.operationDoctorImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.anesthesiaEntity.operationDoctorImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.operationDoctorImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.anesthesiaEntity.operationDoctorImage">手术室护士未签名</div>
         </div>
       </div>
       <div :class="['checkInner flex']">
@@ -482,9 +484,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>手术室护士签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.anesthesiaEntity.operationNurseImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.operationNurseImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.anesthesiaEntity.operationNurseImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.operationNurseImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.anesthesiaEntity.operationNurseImage">手术室护士未签名</div>
         </div>
       </div>
       <div :class="['checkInner flex']">
@@ -500,10 +504,14 @@
         <div class="signTitle flex_aling_center_start">
           <p>麻醉师签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.anesthesiaEntity.anesthesiaDoctorImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.anesthesiaDoctorImage" />
-          <div v-else>此区域签名</div>
+
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.anesthesiaEntity.anesthesiaDoctorImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.anesthesiaEntity.anesthesiaDoctorImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.anesthesiaEntity.anesthesiaDoctorImage">麻醉师未签名</div>
         </div>
+
       </div>
       <div :class="['checkInner flex']">
         <div class="signTitle1 flex_aling_center_start">

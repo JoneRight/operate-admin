@@ -226,6 +226,26 @@
         </div>
       </div>
     </div>
+    <div class="underLineBox marginBottom10"></div>
+    <div :class="['checkInner flex']">
+      <div class="signTitle flex_aling_center_start">
+        <p>护士签名 </p>
+      </div>
+      <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+        <div class="isSignBox flex" v-if="operationObj.fuliaoEntity.nurseImage">
+          <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.fuliaoEntity.nurseImage" mode="aspectFit"/>
+        </div>
+        <div class="unSignBox flex" v-if="!operationObj.fuliaoEntity.nurseImage">护士未签名</div>
+      </div>
+    </div>
+    <div :class="['checkInner flex']">
+      <div class="signTitle1 flex_aling_center_start">
+        <p>签名日期</p>
+      </div>
+      <div class='checkInnerChoose flex_center signDate'>
+        <div>{{ operationObj.fuliaoEntity.nurseTime || '---' }}</div>
+      </div>
+    </div>
   </div>
 </template>
 <script>

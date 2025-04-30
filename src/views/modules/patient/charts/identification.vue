@@ -234,9 +234,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>巡回护士签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.bsEntity.xhNurseImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.xhNurseImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.bsEntity.xhNurseImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.xhNurseImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.bsEntity.xhNurseImage">巡回护士未签名</div>
         </div>
       </div>
 
@@ -307,9 +309,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>巡回护士签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.bsEntity.toXhNurseImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.toXhNurseImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.bsEntity.toXhNurseImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.toXhNurseImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.bsEntity.toXhNurseImage">巡回护士未签名</div>
         </div>
       </div>
 
@@ -328,9 +332,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>麻醉医师签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.bsEntity.anesthesiaDoctorImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.anesthesiaDoctorImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.bsEntity.anesthesiaDoctorImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.anesthesiaDoctorImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.bsEntity.anesthesiaDoctorImage">麻醉医师未签名</div>
         </div>
       </div>
 
@@ -349,9 +355,11 @@
         <div class="signTitle flex_aling_center_start">
           <p>手术医师签名</p>
         </div>
-        <div class='checkInnerChoose flex_center signBox'>
-          <img v-if="operationObj.bsEntity.operationDoctorImage" style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.operationDoctorImage" />
-          <div v-else>此区域签名</div>
+        <div class='checkInnerChoose flex_center signBox' style="color: #99999980;cursor: not-allowed">
+          <div class="isSignBox flex" v-if="operationObj.bsEntity.operationDoctorImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationObj.bsEntity.operationDoctorImage" mode="aspectFit"/>
+          </div>
+          <div class="unSignBox flex" v-if="!operationObj.bsEntity.operationDoctorImage">手术医师未签名</div>
         </div>
       </div>
 
@@ -363,9 +371,6 @@
           <div>{{ operationObj.bsEntity.operationDoctorTime || '---' }}</div>
         </div>
       </div>
-
-
-
     </div>
 
 

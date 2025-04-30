@@ -564,7 +564,7 @@
           <div class="isSignBox flex" v-if="operationDetail.operateEntity.bfNurseImage">
             <img style="height: 80px;" :src="'data:image/png;base64,' + operationDetail.operateEntity.bfNurseImage" mode="aspectFit"/>
           </div>
-          <div class="unSignBox flex" v-if="!operationDetail.operateEntity.bfNurseImage" @click="signHandleWard('bfNurse', 'sign')">点此区域签名</div>
+          <div style="height: 80px;width: 100%;display: flex;justify-content: center;align-items: center;" class="unSignBox flex" v-if="!operationDetail.operateEntity.bfNurseImage" @click="signHandleWard('bfNurse', 'sign')">点此区域签名</div>
         </div>
       </div>
 
@@ -610,10 +610,10 @@
       :before-close="handleClose">
       <div class="pdfInner">
         <div style="flex: 1">
-          <iframe 
-            :src="pdfUrl" 
-            width="100%" 
-            height="100%" 
+          <iframe
+            :src="pdfUrl"
+            width="100%"
+            height="100%"
             style="border: none;"
           ></iframe>
         </div>
@@ -775,7 +775,16 @@ export default {
               this.$message.warning('手术室护士已签名，不能重新签名和修改数据')
               return false
             } else {
-              this.$message.warning('不可编辑状态不能修改签名，请先点击修改按钮')
+              // 名字可以修改
+              this.nameDisabled = false
+              this.userInfo = {
+                workNo: this.operationDetail.operateEntity.bfNurseNo,
+                password: '',
+                applyForEdit: false,
+                nurseType: this.userInfo.nurseType,
+                signFlag: this.userInfo.signFlag
+              }
+              this.signVisible = true
               return false
             }
           } else if (this.operationDetail.operateEntity.operationNurseImage) {
@@ -789,7 +798,7 @@ export default {
               workNo: this.operationDetail.operateEntity.bfNurseNo,
               password: '',
               applyForEdit: false,
-              type: this.userInfo.nurseType,
+              nurseType: this.userInfo.nurseType,
               signFlag: this.userInfo.signFlag
             }
             this.signVisible = true
@@ -809,7 +818,7 @@ export default {
               workNo: '',
               password: '',
               applyForEdit: false,
-              type: this.userInfo.nurseType,
+              nurseType: this.userInfo.nurseType,
               signFlag: this.userInfo.signFlag
             }
             this.signVisible = true
@@ -847,14 +856,13 @@ export default {
     // 登录
     loginHandle () {
       this.signLoading = true
-      let params = {
-        workNo: this.userInfo.workNo,
-        password: this.userInfo.password
-      }
       // laoding start
       this.signLoading = true
-
-      getSignProd(params).then(res => {
+      const formData = new URLSearchParams()
+      formData.append('workNo', this.userInfo.workNo)
+      formData.append('password', this.userInfo.password)
+      getSignProd(formData).then(response => {
+        let res = response.data
         // 请求成功
         this.signLoading = false
         this.signVisible = false
@@ -874,6 +882,8 @@ export default {
             this.saveHandle()
           }
         } else {
+          console.log(`this.userInfo.signFlag`, this.userInfo.signFlag)
+          console.log(`this.userInfo.nurseType`, this.userInfo.nurseType)
           if (this.userInfo.nurseType === 'bfNurse') {
             // 病房护士签名
             // 如果是申请修改的话
