@@ -157,6 +157,16 @@
       "value": "0"
     }
   ],
+  "useOptions": [
+    {
+      "label": "已用",
+      "value": "1"
+    },
+    {
+      "label": "未用",
+      "value": "0"
+    }
+  ],
   "bfBuWeiOptions": [
     {
       "label": "左侧",

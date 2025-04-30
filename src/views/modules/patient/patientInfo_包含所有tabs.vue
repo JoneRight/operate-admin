@@ -8,12 +8,23 @@
     <div class="chartsBoxInner">
       <div>
         <beforeOperation ref='beforeOperation' v-if="activeName === '0'"></beforeOperation>
+        <identification ref='identification' v-if="activeName === '1'"></identification>
+        <safeOperationCheck ref='safeOperationCheck' v-if="activeName === '2'"></safeOperationCheck>
+        <CORNOperation ref='CORNOperation' v-if="activeName === '3'"></CORNOperation>
+        <fuLiaoClean ref='fuLiaoClean' v-if="activeName === '4'"></fuLiaoClean>
+        <afterOperation ref='afterOperation' v-if="activeName === '5'"></afterOperation>
       </div>
     </div>
   </div>
 </template>
 <script>
 import beforeOperation from '@/views/modules/patient/charts/beforeOperation'
+import identification from '@/views/modules/patient/charts/identification'
+import safeOperationCheck from '@/views/modules/patient/charts/safeOperationCheck'
+import CORNOperation from '@/views/modules/patient/charts/CORNOperation'
+import fuLiaoClean from '@/views/modules/patient/charts/fuLiaoClean'
+import afterOperation from '@/views/modules/patient/charts/afterOperation'
+
 export default{
   props: ['activePatientInfo'],
   data () {
@@ -25,13 +36,43 @@ export default{
         {
           label: '手术患者交接表(术前)',
           value: '0'
+        },
+        {
+          label: '手术患者辨识单',
+          value: '1'
+        },
+        {
+          label: '手术安全核查表',
+          value: '2'
+        },
+        {
+          label: 'CORN术中获得压力性损伤风险评估表',
+          value: '3'
+        },
+        {
+          label: '手术室感染手术敷料清洗统计表',
+          value: '4'
+        },
+        {
+          label: '手术患者交接表(术后)',
+          value: '5'
         }
       ]
     }
   },
   components: {
     // 手术患者交接表(术前)
-    beforeOperation
+    beforeOperation,
+    // 手术患者辨识单
+    identification,
+    // 手术安全核查表
+    safeOperationCheck,
+    // CORN术中获得压力性损伤风险评估表
+    CORNOperation,
+    // 手术室感染手术辅料清洗统计表
+    fuLiaoClean,
+    // 手术患者交接表(术后)
+    afterOperation
 
   },
   methods: {
@@ -42,6 +83,46 @@ export default{
           this.activeNameBak = '0'
           this.$nextTick(() => {
             this.$refs.beforeOperation.getDetails(this.activePatientInfo)
+          })
+
+          //
+        } else if (this.activeName === '1') {
+          // 手术患者辨识单
+          this.activeNameBak = '1'
+          this.$nextTick(() => {
+            this.$refs.identification.getDetails(this.activePatientInfo)
+          })
+
+          //
+        } else if (this.activeName === '2') {
+          // 手术安全核查表
+          this.activeNameBak = '2'
+          this.$nextTick(() => {
+            this.$refs.safeOperationCheck.getDetails(this.activePatientInfo)
+          })
+
+          //
+        } else if (this.activeName === '3') {
+          // CORN术中获得压力性损伤风险评估表
+          this.activeNameBak = '3'
+          this.$nextTick(() => {
+            this.$refs.CORNOperation.getDetails(this.activePatientInfo)
+          })
+
+          //
+        } else if (this.activeName === '4') {
+          // 手术室感染手术敷料清洗统计表
+          this.activeNameBak = '4'
+          this.$nextTick(() => {
+            this.$refs.fuLiaoClean.getDetails(this.activePatientInfo)
+          })
+
+          //
+        } else if (this.activeName === '5') {
+          // 手术患者交接表(术后)
+          this.activeNameBak = '5'
+          this.$nextTick(() => {
+            this.$refs.afterOperation.getDetails(this.activePatientInfo)
           })
 
           //

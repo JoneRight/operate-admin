@@ -148,7 +148,6 @@
       <div class="topBox flex underLineBox">
         <div class="topBoxT flex">
           <div class="headTitle">接患者登记表</div>
-          <div v-if="!beforeEditFlag" :class="'editBtn ' + (operationDetail.operateEntity.operationNurseImage ? 'unableEditBtn' : '')" @click="changeBefore('bfNurse')">{{operationDetail.operateEntity.operationNurseImage}}修改</div>
         </div>
       </div>
       <!-- 手术(操作)知情同意书 start -->
@@ -475,15 +474,77 @@
     <div class="innerBox-z marginBottom20">
       <div class="topBox flex underLineBox">
         <div class="topBoxT flex">
-          <div class="headTitle">术前带药情况</div>
+          <div class="headTitle">术前带药使用情况</div>
+          <view v-if="!afterEditFlag" :class="'editBtn ' + (operationDetail.operateEntity.xhNurseImage ? 'unableEditBtn' : '')" @click="changeBefore('xhNurse')">修改</view>
         </div>
       </div>
       <div :class="['checkInner flex', 'underLineBox']"  v-for="(item, index) in operationDetail.drugs" :key="index">
         <div>{{ item.drugName }}</div>
-        <div class='checkInnerChoose flex_aling_center'>
-          {{ item.unit }}
+        <div style="display: flex;justify-content: flex-end;">
+          <div class='checkConBoxcontent2 flex' style="width: 100px;display: flex;justify-content: flex-end;">
+            <div>{{ item.unit }}</div>
+          </div>
+          <div class="checkConBoxToCheckBox" style="width: 140px;padding-left: 10px;display:flex; justify-content: flex-end;">
+            <el-radio :disabled="!afterEditFlag"  v-model="item.isUse" v-for='(items, index) in jsonData.useOptions' :key='index' :label='items.value' size="small">{{ items.label }}</el-radio>
+          </div>
         </div>
       </div>
+
+      <div :class="['checkInner flex']">
+        <div class="signTitle flex_aling_center_start">
+          <p>巡回护士签名</p>
+          <div v-if="operationDetail.operateEntity.xhNurseImage && !beforeEditFlag" style="cursor:pointer;color: #999;font-size: 12px;position:absolute;bottom: 10px;left: 20px;" @click="signHandleWard('xhNurse', 'reSign')">取消签名</div>
+
+        </div>
+        <div class='checkInnerChoose flex_center signBox'>
+          <div class="isSignBox flex" v-if="operationDetail.operateEntity.xhNurseImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationDetail.operateEntity.xhNurseImage" mode="aspectFit"/>
+          </div>
+          <div style="height: 80px;width: 100%;display: flex;justify-content: center;align-items: center;" class="unSignBox flex" v-if="!operationDetail.operateEntity.xhNurseImage" @click="signHandleWard('xhNurse', 'sign')">点此区域签名</div>
+        </div>
+      </div>
+
+      <div :class="['checkInner flex']">
+        <div class="signTitle1 flex_aling_center_start">
+          <p>巡回护士签名时间</p>
+        </div>
+        <div class='checkInnerChoose flex_center signDate'>
+          <div>{{ operationDetail.operateEntity.xhNurseTime || '---'  }}</div>
+        </div>
+      </div>
+
+      <div class="underLineBox"></div>
+
+      <div :class="['checkInner flex']">
+        <div class="signTitle flex_aling_center_start">
+          <div>
+            <div>病房/PACU/ICU</div>
+            <div>/AICU护士签名</div>
+          </div>
+          <div v-if="operationDetail.operateEntity.bfPacuIcuAicuImage && !beforeEditFlag" style="cursor:pointer;color: #999;font-size: 12px;position:absolute;bottom: 10px;left: 20px;" @click="signHandleWard('bfPacuIcuAicu', 'reSign')">取消签名</div>
+
+        </div>
+        <div class='checkInnerChoose flex_center signBox'>
+          <div class="isSignBox flex" v-if="operationDetail.operateEntity.bfPacuIcuAicuImage">
+            <img style="height: 80px;" :src="'data:image/png;base64,' + operationDetail.operateEntity.bfPacuIcuAicuImage" mode="aspectFit"/>
+          </div>
+          <div style="height: 80px;width: 100%;display: flex;justify-content: center;align-items: center;" class="unSignBox flex" v-if="!operationDetail.operateEntity.bfPacuIcuAicuImage" @click="signHandleWard('bfPacuIcuAicu', 'sign')">点此区域签名</div>
+        </div>
+      </div>
+
+      <div :class="['checkInner flex']">
+        <div class="signTitle1 flex_aling_center_start">
+          <div>
+            <div>病房/PACU/ICU</div>
+            <div>/AICU护士签名时间</div>
+          </div>
+        </div>
+        <div class='checkInnerChoose flex_center signDate'>
+          <div>{{ operationDetail.operateEntity.bfPacuIcuAicuTime || '---'  }}</div>
+        </div>
+      </div>
+
+
     </div>
 
     <div class="innerBox-z marginBottom20">
@@ -556,15 +617,12 @@
       <div :class="['checkInner flex']">
         <div class="signTitle flex_aling_center_start">
           <p>病房护士签名</p>
-          <!-- <div style="color: #999;font-size: 12px;position:absolute;bottom: 10px;left: 20px;" @click="signHandleWard('bfNurse', 'reSign')">取消签名</div> -->
-          <div v-if="operationDetail.operateEntity.bfNurseImage && !beforeEditFlag" style="cursor:pointer;color: #999;font-size: 12px;position:absolute;bottom: 10px;left: 20px;" @click="signHandleWard('bfNurse', 'reSign')">取消签名</div>
-
         </div>
         <div class='checkInnerChoose flex_center signBox'>
           <div class="isSignBox flex" v-if="operationDetail.operateEntity.bfNurseImage">
             <img style="height: 80px;" :src="'data:image/png;base64,' + operationDetail.operateEntity.bfNurseImage" mode="aspectFit"/>
           </div>
-          <div style="height: 80px;width: 100%;display: flex;justify-content: center;align-items: center;" class="unSignBox flex" v-if="!operationDetail.operateEntity.bfNurseImage" @click="signHandleWard('bfNurse', 'sign')">点此区域签名</div>
+          <div class="unSignBox flex" v-if="!operationDetail.operateEntity.bfNurseImage">病房护士未签名</div>
         </div>
       </div>
 
@@ -601,7 +659,7 @@
       </div>
     </div>
     <div class="fixedBtnBox">
-      <el-button :disabled="!beforeEditFlag" type="primary" style="width: 300px;" size="large" @click="saveHandle()">保存</el-button>
+      <el-button :disabled="!afterEditFlag" type="primary" style="width: 300px;" size="large" @click="saveHandle()">保存</el-button>
     </div>
     <el-dialog
       :title="pdfTitle"
@@ -668,6 +726,7 @@ export default {
         // drugs: []
       },
       beforeEditFlag: true,
+      afterEditFlag: true,
       pdfTitle: '',
       pdfUrl: '',
       pdfVisible: false,
@@ -717,15 +776,15 @@ export default {
     // 签名 start
     // 修改
     changeBefore (nurseType) {
-      if (this.operationDetail.operateEntity.operationNurseImage) {
-        this.$message.warning(`手术室护士已签名，不能修改`)
+      if (this.operationDetail.operateEntity.bfPacuIcuAicuImage) {
+        this.$message.warning(`病房/PACU/ICU/AICU护士已签名，不能修改`)
         return false
       } else {
         // 后期需要登录
         // 只要输入密码就好，名字不能修改了
         this.nameDisabled = true
         this.userInfo = {
-          workNo: this.operationDetail.operateEntity.bfNurseNo,
+          workNo: this.operationDetail.operateEntity.xhNurseNo,
           password: '',
           applyForEdit: true,
           nurseType: nurseType,
@@ -767,18 +826,18 @@ export default {
         // 3、病房护士不签名手术室护士不能签名
 
         // 先判断病房护士
-        if (this.userInfo.nurseType === 'bfNurse') {
+        if (this.userInfo.nurseType === 'xhNurse') {
           // 如果 处于不可编辑状态，则不能签名
-          if (!this.beforeEditFlag) {
+          if (!this.afterEditFlag) {
             // 如果手术室护士没有签名的话，可以先点击修改按钮
-            if (this.operationDetail.operateEntity.operationNurseImage) {
-              this.$message.warning('手术室护士已签名，不能重新签名和修改数据')
+            if (this.operationDetail.operateEntity.bfPacuIcuAicuImage) {
+              this.$message.warning('病房/PACU/ICU/AICU护士已签名，不能重新签名和修改数据')
               return false
             } else {
               // 名字可以修改
               this.nameDisabled = false
               this.userInfo = {
-                workNo: this.operationDetail.operateEntity.bfNurseNo,
+                workNo: this.operationDetail.operateEntity.xhNurseNo,
                 password: '',
                 applyForEdit: false,
                 nurseType: this.userInfo.nurseType,
@@ -787,15 +846,15 @@ export default {
               this.signVisible = true
               return false
             }
-          } else if (this.operationDetail.operateEntity.operationNurseImage) {
+          } else if (this.operationDetail.operateEntity.bfPacuIcuAicuImage) {
             // 手术室护士签名后，不能修改
-            this.$message.warning('手术室护士签名后，不能修改')
+            this.$message.warning('病房/PACU/ICU/AICU护士签名后，不能修改')
             return false
           } else {
             // 名字可以修改
             this.nameDisabled = false
             this.userInfo = {
-              workNo: this.operationDetail.operateEntity.bfNurseNo,
+              workNo: this.operationDetail.operateEntity.xhNurseNo,
               password: '',
               applyForEdit: false,
               nurseType: this.userInfo.nurseType,
@@ -803,13 +862,13 @@ export default {
             }
             this.signVisible = true
           }
-        } else if (this.userInfo.nurseType === 'operationNurse') {
+        } else if (this.userInfo.nurseType === 'bfPacuIcuAicu') {
           // 如果病房护士没有签名，则手术室护士不能签名
           if (!this.operationDetail.operateEntity.bfNurseImage) {
-            this.$message.warning('病房护士没有签名，则手术室护士不能签名')
+            this.$message.warning('巡回护士没有签名，则病房/PACU/ICU/AICU护士不能签名')
             return false
-          } else if (this.operationDetail.operateEntity.operationNurseImage) {
-            this.$message.warning('手术室护士已签名')
+          } else if (this.operationDetail.operateEntity.bfPacuIcuAicuImage) {
+            this.$message.warning('病房/PACU/ICU/AICU护士已签名')
             return false
           } else {
             // 名字可以修改
@@ -826,24 +885,23 @@ export default {
         }
       } else if (this.userInfo.signFlag === 'reSign') {
         // 取消签名的逻辑
-        if (this.userInfo.nurseType === 'bfNurse') {
+        if (this.userInfo.nurseType === 'xhNurse') {
           // 名字可以修改
           this.nameDisabled = true
           this.userInfo = {
-            workNo: this.operationDetail.operateEntity.bfNurseNo || '',
             password: '',
             applyForEdit: false,
             nurseType: this.userInfo.nurseType,
             signFlag: this.userInfo.signFlag
           }
           this.signVisible = true
-        } else if (this.userInfo.nurseType === 'operationNurse') {
+        } else if (this.userInfo.nurseType === 'bfPacuIcuAicu') {
           // 如果病房护士没有签名，则手术室护士不能签名
           // 名字可以修改
           this.nameDisabled = true
 
           this.userInfo = {
-            workNo: this.operationDetail.operateEntity.operationNurseNo || '',
+            workNo: this.operationDetail.operateEntity.bfPacuIcuAicuNo || '',
             password: '',
             applyForEdit: false,
             nurseType: this.userInfo.nurseType,
@@ -870,37 +928,37 @@ export default {
         // 需要分批次处理了
         // 如果是取消签名
         if (this.userInfo.signFlag === 'reSign') {
-          if (this.userInfo.nurseType === 'bfNurse') {
-            this.operationDetail.operateEntity.bfNurseImage = ''
-            this.operationDetail.operateEntity.bfNurseNo = ''
+          if (this.userInfo.nurseType === 'xhNurse') {
+            this.operationDetail.operateEntity.xhNurseImage = ''
+            this.operationDetail.operateEntity.xhNurseNo = ''
             // 签名成功调一遍保存接口
             this.saveHandle()
-          } else if (this.userInfo.nurseType === 'operationNurse') {
-            this.operationDetail.operateEntity.operationNurseImage = ''
-            this.operationDetail.operateEntity.operationNurseNo = ''
+          } else if (this.userInfo.nurseType === 'bfPacuIcuAicu') {
+            this.operationDetail.operateEntity.bfPacuIcuAicuImage = ''
+            this.operationDetail.operateEntity.bfPacuIcuAicuNo = ''
             // 签名成功调一遍保存接口
             this.saveHandle()
           }
         } else {
           console.log(`this.userInfo.signFlag`, this.userInfo.signFlag)
           console.log(`this.userInfo.nurseType`, this.userInfo.nurseType)
-          if (this.userInfo.nurseType === 'bfNurse') {
+          if (this.userInfo.nurseType === 'xhNurse') {
             // 病房护士签名
             // 如果是申请修改的话
             if (this.userInfo.applyForEdit) {
-              this.beforeEditFlag = true
+              this.afterEditFlag = true
             } else {
-              this.operationDetail.operateEntity.bfNurseImage = `${res.signPic}`
-              this.operationDetail.operateEntity.bfNurseTime = moment().format('YYYY-MM-DD HH:mm:ss')
-              this.operationDetail.operateEntity.bfNurseNo = res.workNo
+              this.operationDetail.operateEntity.xhNurseImage = `${res.signPic}`
+              this.operationDetail.operateEntity.xhNurseTime = moment().format('YYYY-MM-DD HH:mm:ss')
+              this.operationDetail.operateEntity.xhNurseNo = res.workNo
               // 签名成功调一遍保存接口
               this.saveHandle()
             }
-          } else if (this.userInfo.nurseType === 'operationNurse') {
+          } else if (this.userInfo.nurseType === 'bfPacuIcuAicu') {
             // 巡回护士签名
-            this.operationDetail.operateEntity.operationNurseImage = `${res.signPic}`
-            this.operationDetail.operateEntity.operationNurseTime = moment().format('YYYY-MM-DD HH:mm:ss')
-            this.operationDetail.operateEntity.operationNurseNo = res.workNo
+            this.operationDetail.operateEntity.bfPacuIcuAicuImage = `${res.signPic}`
+            this.operationDetail.operateEntity.bfPacuIcuAicuTime = moment().format('YYYY-MM-DD HH:mm:ss')
+            this.operationDetail.operateEntity.bfPacuIcuAicuNo = res.workNo
             // 签名成功调一遍保存接口
             this.saveHandle()
           }
@@ -926,14 +984,20 @@ export default {
         this.operationDetail.operateEntity.chaoSheng = this.operationDetail.operateEntity.chaoSheng === '1' ? true : this.operationDetail.operateEntity.chaoSheng === '0' ? false : ''
 
       // 根据病房护士是否签名来判断能否编辑
-        this.beforeEditFlag = !this.operationDetail.operateEntity.bfNurseImage
+        // this.beforeEditFlag = !this.operationDetail.operateEntity.bfNurseImage
+        this.beforeEditFlag = false
+        if (this.operationDetail.operateEntity.xhNurseImage) {
+          this.afterEditFlag = false
+        } else {
+          this.afterEditFlag = true
+        }
       })
     },
     // 保存
     saveHandle () {
       // 校验
       if (this.activeErrorIdArr.length > 0) {
-        console.log('activeErrorIdArr[0]', this.activeErrorIdArr)
+        console.log('activeErrorIdArr', this.activeErrorIdArr)
         scrollTo(this.activeErrorIdArr[0])
         this.$message.warning('请先填写必填项')
         return false
