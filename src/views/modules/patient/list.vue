@@ -8,9 +8,11 @@
             <el-form-item label="日期：">
               <el-date-picker
                 size='small'
-                v-model="searchForm.dateValue"
+                v-model="searchForm.operateDate"
                 style='min-width: 10px'
-                :clearable="false"
+                format="yyyy 年 MM 月 dd 日"
+                value-format="yyyy-MM-dd"
+                :clearable="true"
                 type="date"
                 placeholder="选择日期">
               </el-date-picker>
@@ -18,11 +20,11 @@
           </el-col>
           <el-col :span='6'>
             <el-form-item label="状态：">
-              <el-select v-model="searchForm.doctor" multiple placeholder="请选择状态" size='small' style="width: 100%;">
+              <el-select v-model="searchForm.status" :clearable="true" placeholder="请选择状态" size='small' style="width: 100%;">
                 <el-option
-                  v-for="item in stateOptions"
+                  v-for="item in statusOptions"
                   :key="item.value"
-                  :label="item.label"
+                  :label="item.text"
                   :value="item.value">
                 </el-option>
               </el-select>
@@ -30,23 +32,23 @@
           </el-col>
           <el-col :span='6'>
             <el-form-item label="手术间科室：">
-              <el-select v-model="searchForm.doctor" multiple placeholder="请选择状态" size='small' style="width: 100%;">
+              <el-select v-model="searchForm.operateRoom" :clearable="true" placeholder="请选择手术间科室" size='small' style="width: 100%;">
                 <el-option
-                  v-for="item in stateOptions"
+                  v-for="item in deptColumns"
                   :key="item.value"
-                  :label="item.label"
+                  :label="item.text"
                   :value="item.value">
                 </el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span='6' v-if="isExpanded">
-            <el-form-item label="手术间：">
-              <el-select v-model="searchForm.doctor" multiple placeholder="请选择状态" size='small' style="width: 100%;">
+            <el-form-item label="手术间号码：">
+              <el-select v-model="searchForm.roomNo" :clearable="true" placeholder="请选择手术间号码" size='small' style="width: 100%;">
                 <el-option
-                  v-for="item in stateOptions"
+                  v-for="item in roomColumns"
                   :key="item.value"
-                  :label="item.label"
+                  :label="item.text"
                   :value="item.value">
                 </el-option>
               </el-select>
@@ -54,14 +56,7 @@
           </el-col>
           <el-col :span='6' v-if="isExpanded">
             <el-form-item label="病人信息：">
-              <el-select v-model="searchForm.doctor" multiple placeholder="请选择状态" size='small' style="width: 100%;">
-                <el-option
-                  v-for="item in stateOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
+              <el-input v-model="searchForm.patientInfo" :clearable="true" placeholder="病人信息" size='small' style="width: 100%;" />
             </el-form-item>
           </el-col>
           <!-- 搜索 & 重置按钮 也占据一个框的位置 -->
@@ -83,7 +78,7 @@
     </div>
     <div class="conBox-z">
       <div class="conBoxLeft">
-        <listBox :patientList="patientList" :activePatientId='activePatientId' @choosePat='choosePat'></listBox>
+        <listBox ref='listBox' :patientList="patientList" :activePatientId='activePatientId' @choosePat='choosePat' ></listBox>
       </div>
       <div class="conBoxRight">
         <patientInfo ref='patientInfo' :activePatientInfo="activePatientInfo"></patientInfo>
@@ -95,7 +90,7 @@
 <script>
 import listBox from '@/views/modules/patient/listBox'
 import patientInfo from '@/views/modules/patient/patientInfo'
-import { fetchList } from '@/api/patient.js'
+import { fetchList, hospitaldept, hospitalroom } from '@/api/patient.js'
 export default {
 
   data () {
@@ -110,11 +105,32 @@ export default {
           value: '1'
         }
       ],
+      statusOptions: [
+        {
+          text: '待送房送患者',
+          value: '0'
+        },
+        {
+          text: '待手术间送患者',
+          value: '1'
+        },
+        {
+          text: '手术结束待归档',
+          value: '2'
+        },
+        {
+          text: '已经完成归档',
+          value: '100'
+        }
+      ],
       isExpanded: false,
       searchForm: {
-        dept: '',
-        doctor: '',
-        dateValue: ''
+
+        operateDate: '',
+        status: '',
+        operateRoom: '',
+        roomNo: ''
+
       },
       patientInfoDes: {
 
@@ -122,11 +138,18 @@ export default {
       activePatientId: '',
       activePatientInfo: {},
       // 患者列表
-      patientList: []
+      patientList: [],
+
+      // 手术间科室
+      deptColumns: [],
+
+      // 手术间号码
+      roomColumns: []
     }
   },
 
   created () {
+    this.getHospitaldept()
     setTimeout(() => {
       this.getList()
     }, 10)
@@ -136,25 +159,71 @@ export default {
     patientInfo
   },
   methods: {
+    // 获取科室
+    getHospitaldept () {
+      hospitaldept().then(res => {
+        console.log(res.data.list)
+        res.data.list.map(v => {
+          v.text = v.deptName
+          v.value = v.deptCode
+        })
+        this.deptColumns = res.data.list
+        this.searchForm.operateRoom = res.data.list[1].deptCode
+        this.getHospitalroom(this.searchForm.operateRoom)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 获取手术间号码
+    getHospitalroom (deptCode) {
+      hospitalroom({deptCode}).then(res => {
+        res.data.list.map(v => {
+          v.text = v.roomNo
+          v.value = v.roomNo
+        })
+        this.roomColumns = res.data.list
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     // 获取患者列表
     getList () {
+      let operateRoom = ''
+      if (this.searchForm.operateRoom) {
+        operateRoom = this.deptColumns.filter(v => {
+          return v.value === this.searchForm.operateRoom
+        })[0].text
+      }
       let params = {
         page: 1,
-        limit: 100000
+        limit: 100000,
+        operateDate: this.searchForm.operateDate,
+        status: this.searchForm.status,
+        patientInfo: this.searchForm.patientInfo,
+        operateRoom: operateRoom,
+        roomNo: this.searchForm.roomNo,
+        orderSql: 'status asc'
       }
       fetchList(params).then(res => {
         if (res.data.page.records.length > 0) {
           this.patientList = res.data.page.records
-          this.activePatientId = this.patientList[0].id
-          this.activePatientInfo = this.patientList[0]
-          // 进来后接着获取患者详情
-          this.$refs.patientInfo.changePatient()
+          if (this.patientList.length > 0) {
+            this.activePatientId = this.patientList[0].id
+            this.activePatientInfo = this.patientList[0]
+            // 进来后接着获取患者详情
+            this.$refs.listBox.changePatientList(this.patientList)
+            // 进来后接着获取患者详情
+            this.$refs.patientInfo.changePatient()
+          } else {
+            this.$refs.listBox.changePatientList([])
+          }
         }
       })
     },
     // 获取患者信息
     search () {
       console.log('搜索条件:', this.searchForm)
+      this.getList()
     },
     reset () {
       // Object.keys(this.searchForm).forEach(key => this.searchForm[key] = "");

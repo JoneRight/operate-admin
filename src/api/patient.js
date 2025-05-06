@@ -34,6 +34,30 @@ export function getDetail (data) {
   })
 }
 
+// 获取手术间科室
+export function hospitaldept (data) {
+  return httpRequest({
+    url: `/ss/hospitaldept/queryAll`,
+    method: 'post',
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded'
+    // },
+    data
+  })
+}
+
+// 获取手术间号码
+export function hospitalroom (data) {
+  return httpRequest({
+    url: `/ss/hospitalroom/queryAll`,
+    method: 'post',
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded'
+    // },
+    data
+  })
+}
+
 // 获取患者手术交接表
 export function patientoperateSaveOrUpdate (data) {
   return httpRequest({

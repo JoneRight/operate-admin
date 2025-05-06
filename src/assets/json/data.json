@@ -157,6 +157,16 @@
       "value": "0"
     }
   ],
+  "haveOptions2": [
+    {
+      "label": "已送",
+      "value": "1"
+    },
+    {
+      "label": "未送",
+      "value": "0"
+    }
+  ],
   "useOptions": [
     {
       "label": "已用",
@@ -346,14 +356,24 @@
       "value": "5"
     }
   ],
+  "pifuOptions": [
+    {
+      "label": "完整",
+      "value": "1"
+    },
+    {
+      "label": "异常",
+      "value": "0"
+    }
+  ],
   "operateExamOptions": [
     {
-      "label": "审核",
+      "label": "已审核",
       "value": "1"
     },
     {
       "label": "未审核",
-      "value": "5"
+      "value": "0"
     }
   ],
   "emergencyList": [

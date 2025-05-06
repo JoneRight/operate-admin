@@ -4,7 +4,7 @@
       <div class="listBoxTopTitle">患者列表</div>
     </div>
     <div class="listBoxBottom">
-      <div @click="choosePatient(item)" :class="['patientInfoBox', activePatientId === item.id ? 'patientInfoBox_active': '']" v-for="(item,index) in patientList" :key='index'>
+      <div @click="choosePatient(item)" :class="['patientInfoBox', activePatientId === item.id ? 'patientInfoBox_active': '']" v-for="(item,index) in newPatientList" :key='index'>
         <div class="patientInfoBoxTitle">{{ item.roomName }}</div>
         <div class="patientInfoBoxDes">
           <el-row>
@@ -44,12 +44,16 @@ export default{
   props: ['patientList', 'activePatientId'],
   data () {
     return {
-
+      newPatientList: []
     }
   },
   created () {
   },
   methods: {
+    changePatientList (val) {
+      console.log(3434, val)
+      this.newPatientList = val
+    },
     choosePatient (val) {
       this.$emit('choosePat', val)
     },

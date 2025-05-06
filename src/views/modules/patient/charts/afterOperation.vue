@@ -1,5 +1,5 @@
 <template>
-  <div class="chartsBox" v-if='operationDetail.operateEntity'>
+  <div class="chartsBox" v-if='operationDetail.operateEntity && operationDetail.operateEntity.id'>
     <!-- 手术患者交接表(术前) -->
     <div class="innerBox-z marginBottom20">
       <div class="topBox flex">
@@ -560,7 +560,7 @@
           皮肤情况
         </div>
         <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.pifuOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
         </div>
       </div>
 
@@ -601,16 +601,6 @@
       <div class="topBox flex underLineBox">
         <div class="topBoxT flex">
           <div class="headTitle">护士签名</div>
-        </div>
-      </div>
-
-
-      <div :class="['checkInner flex', operationDetail.operateEntity.piFuQk ? 'checkInner_choosed' : '' ]" id="piFuQk">
-        <div>
-          皮肤情况
-        </div>
-        <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
         </div>
       </div>
 

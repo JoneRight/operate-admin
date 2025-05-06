@@ -119,6 +119,12 @@
         <el-row :gutter="10">
           <el-col :span="24">
             <div class="innerCon">
+              <span class="innerConLeft">术后返回：</span>
+              <el-radio :disabled="!beforeEditFlag" v-model="operationDetail.operateEntity.operateBack" v-for='(item, index) in jsonData.operateBackOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+            </div>
+          </el-col>
+          <el-col :span="24">
+            <div class="innerCon">
               <span class="innerConLeft">手术标识：</span>
               <el-radio :disabled="!beforeEditFlag" v-model="operationDetail.operateEntity.operateFlag" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
             </div>
@@ -137,6 +143,18 @@
           </el-col>
           <el-col :span="24">
             <div class="innerCon">
+              <span class="innerConLeft">术中冰冻：</span>
+              <el-radio :disabled="!beforeEditFlag" v-model="operationDetail.operateEntity.operateFrost" v-for='(item, index) in jsonData.haveOptions2' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+            </div>
+          </el-col>
+          <el-col :span="24">
+            <div class="innerCon">
+              <span class="innerConLeft">标本送病理：</span>
+              <el-radio :disabled="!beforeEditFlag" v-model="operationDetail.operateEntity.specimen" v-for='(item, index) in jsonData.haveOptions2' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+            </div>
+          </el-col>
+          <el-col :span="24">
+            <div class="innerCon">
               <span class="innerConLeft">患者腕带：</span>
               <el-radio :disabled="!beforeEditFlag" v-model="operationDetail.operateEntity.wanDai" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
             </div>
@@ -148,7 +166,7 @@
       <div class="topBox flex underLineBox">
         <div class="topBoxT flex">
           <div class="headTitle">接患者登记表</div>
-          <div v-if="!beforeEditFlag" :class="'editBtn ' + (operationDetail.operateEntity.operationNurseImage ? 'unableEditBtn' : '')" @click="changeBefore('bfNurse')">{{operationDetail.operateEntity.operationNurseImage}}修改</div>
+          <div v-if="!beforeEditFlag" :class="'editBtn ' + (operationDetail.operateEntity.operationNurseImage ? 'unableEditBtn' : '')" @click="changeBefore('bfNurse')">修改</div>
         </div>
       </div>
       <!-- 手术(操作)知情同意书 start -->
@@ -383,7 +401,7 @@
           静脉输液
         </div>
         <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.jmsy" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+          <el-radio @change="jmsyChangeHandle" :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.jmsy" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
           <el-input :disabled='!beforeEditFlag || operationDetail.operateEntity.jmsy !== "1"' v-model="operationDetail.operateEntity.jmsyBw" placeholder="" input-align="center" class="common-input" :style="'width: 200px;border-radius: 2px;margin: 0 10px;'" size="small"></el-input>
           <div>部位</div>
         </div>
@@ -463,7 +481,7 @@
           影像学资料
         </div>
         <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.yingXiang" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+          <el-radio @change='yingXiangChangeHandle' :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.yingXiang" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
           <el-input :disabled='!beforeEditFlag || operationDetail.operateEntity.yingXiang !== "1"' v-model="operationDetail.operateEntity.yingXiangCount" placeholder="" input-align="center" class="common-input" :style="'width: 200px;border-radius: 2px;margin: 0 10px;'" size="small"></el-input>
           <div>张</div>
         </div>
@@ -499,7 +517,7 @@
           皮肤情况
         </div>
         <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
+          <el-radio @change="pifuChangeHandle" :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.pifuOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
         </div>
       </div>
 
@@ -540,16 +558,6 @@
       <div class="topBox flex underLineBox">
         <div class="topBoxT flex">
           <div class="headTitle">护士签名</div>
-        </div>
-      </div>
-
-
-      <div :class="['checkInner flex', operationDetail.operateEntity.piFuQk ? 'checkInner_choosed' : '' ]" id="piFuQk">
-        <div>
-          皮肤情况
-        </div>
-        <div class='checkInnerChoose flex_aling_center'>
-          <el-radio :disabled="!beforeEditFlag"  v-model="operationDetail.operateEntity.piFuQk" v-for='(item, index) in jsonData.haveOptions' :key='index' :label='item.value' size="small">{{ item.label }}</el-radio>
         </div>
       </div>
 
@@ -697,6 +705,25 @@ export default {
     }
   },
   methods: {
+    // 影像资料切换
+    yingXiangChangeHandle () {
+      if (this.operationDetail.operateEntity.yingXiang !== '1') {
+        this.operationDetail.operateEntity.yingXiangCount = ''
+      }
+    },
+    // 静脉输液切换
+    jmsyChangeHandle () {
+      if (this.operationDetail.operateEntity.jmsy !== '1') {
+        this.operationDetail.operateEntity.jmsyBw = ''
+      }
+    },
+    // 皮肤情况切换
+    pifuChangeHandle () {
+      if (this.operationDetail.operateEntity.piFuQk === '1') {
+        this.operationDetail.operateEntity.piFuBw = ''
+        this.operationDetail.operateEntity.piFuMj = ''
+      }
+    },
     handleEnter () {
       console.log('3434')
     },
